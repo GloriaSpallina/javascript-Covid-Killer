@@ -9,7 +9,12 @@ body {
   margin: 0;
   min-height: 100%;
   font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+// Couleur
+
+$green : #0de065 ;
 
 .d-flex{
   display: flex;
@@ -23,10 +28,17 @@ body {
 }
 
 .carteVaccin{
-  border: black 1px solid;
+  border: #0de065aa  2px solid;
   text-align: center;
   width: 340px;
-  padding-bottom: 25px;
+  padding: 3px;
+  color:black;
+  margin-top: 10px;
+  
+  h2{
+    color: $green ;
+    text-transform: uppercase;
+  }
 }
 .cheat{
   width: 340px;
@@ -37,51 +49,100 @@ body {
   height: 250px;
 }
 
-.commande{
-  width: 50%;
-  border: black 1px solid;
+.quantiteVoulue{
+  margin-top: 15px;
 }
 
-h1{
+.titre-site{
   font-size: 60px;
   text-align: center;
-  text-decoration: underline black solid;
+  background-color: black;
+  color: $green;
+  font-family:'Courier New, Courier, monospace';
+  align-items: center;
 }
 
-header{
-  padding: 40px;
- 
+
+.img-covid{
+  width: 168px;
+  height: 157px;
 }
 
 button{
-  padding: 10px;
-  background-color: black;
-  color: white;
-  margin-left: 100px;
+  border: $green solid 0.2rem;
+  border-radius: 0.6em;
+  color: $green;
+  cursor: pointer;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 20px 30px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  &:hover,
+  &:focus {
+    color: #fff;
+    outline: 0;
+    cursor: pointer;
+  }
+
 }
+button {
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  &:hover {
+    box-shadow: 0 0 40px 40px $green inset;
+    
+  }
+}
+
 
 footer{
   min-height: 400px;
   h2{
     text-align: center;
   }
-  p{
-    padding: 10px;
-  }
-  .contenuCommande, .total, p{
+  .contenuCommande, .total, .messageCommande {
     margin-left: 100px;
-    padding: 10px;
+   
     div{
       padding: 5px;
     }
   }
+
+  .commande{
+    margin-right: 100px ;
+    background-color: black;
+    color:$green;
+    font-size: 18px;
+  }
+  .btn-commande{
+    margin-top: 50px;
+    text-align: center;
+  }
+  button:disabled{
+    background-color: gray;
+    border: rgb(81, 80, 80);
+    color:  rgb(81, 80, 80);
+    &:hover {
+      box-shadow: 0 0 40px 40px gray inset;
+      cursor :not-allowed;
+    }
+  }
+
 }
-
-
 
 .resume-order{
   margin: 50px;
   div{
     padding: 5px;
+  }
+  .commande{
+    background-color: black;
+    color:$green;
   }
 }

@@ -6,18 +6,23 @@ const app = document.querySelector('#app');
 // Fonction pour faire apparaitre toute la page avec tous les vaccins
 function render() {
   app.innerHTML = '';
-  // le nom du site
-  const nomDuSite = '<h1>Covid Killer</h1>';
   // Creation du header avec les boutons pour classer
   const header = `
     <header>
+    <div class="d-flex-wrap titre-site">
+      <img src="covidkiller.png" class="img-covid"/>
+      <h1>Covid Killer</h1>
+      <img src="covidkiller.png" class="img-covid"/>
+    </div>
+    <div class="d-flex-wrap">
       <button id="classerParPrix">Classer par prix</button>
-      <button class="btn-approuve">Cacher les vaccins non approuvés</button>
-    </header>
+      <button class="btn-approuve">Uniquement approuvés</button>
+      </div>
+      </header>
   `;
 
   // injecter le titre et le hearder dans le HTML
-  app.innerHTML += nomDuSite + header;
+  app.innerHTML += header;
   // Creation du catalogue de vaccins sous forme de carte
   let main = '<main><section class="catalogue d-flex-wrap">';
   vaccins.map((vaccin) => {
@@ -54,8 +59,10 @@ function render() {
       <p class="messageCommande">Votre panier est vide</p>
       <div class="contenuCommande"> </div>
       <div class="total"> </div>
+      <div class="btn-commande">
       <button id="commander" disabled>Passer commande</button>
       <button id="supprimerPanier" disabled>Annuler la commande</button>
+      </div>
     </div>
     </footer>
   `;
@@ -98,16 +105,18 @@ document.body.addEventListener('click', (e) => {
       // Ajouter le vaccin + la quantité dans le footer
       const totalLot = prix * quantiteVoulue;
       let prixTotal = 0;
-      contenuFacture.innerHTML += `
+      const contenuCommande = document.querySelector('.contenuCommande');
+      contenuCommande.innerHTML += `
         <div class="d-flex commande">
             <div>Nom : ${nomVaccinSelect} </div>
             <div>Prix unitaire: ${prix} $</div>
             <div>Quantité : ${quantiteVoulue}</div>
-            <div>Prix du lot:<span class="total-lot">${totalLot}</span> $</div>
+            <div>Prix du lot: <span class="total-lot">${totalLot}</span> $</div>
         </div>
       `;
       document.querySelectorAll('.total-lot').forEach((tl) => prixTotal += Number(tl.innerHTML));
-      totalFacture.innerHTML = `
+      const leTotal = document.querySelector('.total');
+      leTotal.innerHTML = `
       <div class="d-flex commande">
           <div>Total :</div>
           <div> ${prixTotal} $</div>
@@ -128,8 +137,11 @@ document.body.addEventListener('click', (e) => {
     app.innerHTML = `
     <div class="resume-order">
       <p>La commande a bien été enregistrée...</p> 
-      ${contenuFacture.innerHTML}
-      ${totalFacture.innerHTML}
+      <div class="commande">
+        ${contenuFacture.innerHTML}
+        ${totalFacture.innerHTML}
+      </div>
+      
       <button id="annulerCommande">Annuler la commande</button>
     </div>
     `;
